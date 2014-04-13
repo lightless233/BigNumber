@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
+#include <time.h>
+
 
 #define ZeroMemory(Destination,Length) memset((Destination),0,(Length))
 
@@ -85,9 +86,25 @@ int main(int argc, char **argv)
 		char res[4096];
 		ZeroMemory(res, 4096);
 		CheckNumber(argv);
+
+#ifdef _DEBUG
+		clock_t a,b;
+#endif
+#ifdef _DEBUG
+		a = clock();
+#endif // _DEBUG
+
 		multiplication(argv, res);
 
+#ifdef _DEBUG
+		b = clock();
+#endif // _DEBUG
+
 		printf("\n\n%s * %s = %s\n", argv[2], argv[3], res);
+
+#ifdef _DEBUG
+		printf("Usage %d ms", b-a);
+#endif // _DEBUG
 	}
 
 	return 0;
